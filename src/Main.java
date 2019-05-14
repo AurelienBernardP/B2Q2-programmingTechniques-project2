@@ -1,4 +1,4 @@
-import montefiore.ulg.ac.be.graphics.NullHandlerException;
+import montefiore.ulg.ac.be.graphics.*;
 
 public class Main {
     public static void main(String[] args) {

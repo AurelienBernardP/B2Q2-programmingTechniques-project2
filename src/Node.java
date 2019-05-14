@@ -1,8 +1,8 @@
 public class Node{
-    private nodeType content;
+    private NodeType content;
     private Node next;
     
-    public Node(nodeType s){
+    public Node(NodeType s){
         content = s;
         next = null;
     }
@@ -15,16 +15,17 @@ public class Node{
         next = n;
     }
     
-    public nodeType getContent(){
+    public NodeType getContent(){
         return content;
     }
 
 
-    public void addNode(nodeType newNode){
+    public void addNode(NodeType newNode){
         //Adding to the first element of the list
         Node newCell = new Node(newNode);
         newCell.setNext(next);
         this.setNext(newCell);
 
     }
+
 }

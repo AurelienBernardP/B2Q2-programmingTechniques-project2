@@ -1,45 +1,46 @@
 
-public class aliasNode extends nodeType{
+public class AliasNode extends NodeType{
     private final String content;
-    private final String name;
 
-    public aliasNode(String name, String content){
-        this.content = content;
+    public AliasNode(String name, String content){
+        super();
         this.name = name;
+        this.content = content;
     }
     public String getContent(){
         return this.content;
     }
     
-    public nodeType createCopy(){
+    public NodeType createCopy(){
         return null;
         //showPopupError("Cannot create a copy of an alias. \n");
     }
-    public void copyNode(){
+    public NodeType copyNode(){
+        return null;
 
     }
-    public nodeType createFile(String name){
+    public NodeType createFile(String name, String content){
         return null;
         //showPopupError("Cannot create a file inside an alias. \n");
     }
 
-    public nodeType createFolder(String name){
+    public NodeType createFolder(String name){
         return null;
         //showPopupError("Cannot create a folder inside an alias. \n");
     }
 
-    public nodeType createAlias(){
+    public NodeType createAlias(){
         return null;
         //showPopupError("Cannot create an alias inside an alias. \n");
     }
 
-    public nodeType createArchive(String name, String extension, int compressionLevel){
+    public NodeType createArchive(String name, String extension, int compressionLevel){
         return null;
         //showPopupError("Cannot archive an alias. \n");
     }
 
-    public String getInfo(){
-        return "yas alias";
+    public String getInfo(int nbIdentation){
+        return content;
     }
 
 }

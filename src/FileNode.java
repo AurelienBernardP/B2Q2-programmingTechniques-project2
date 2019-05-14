@@ -1,4 +1,4 @@
-public class FileNode extends nodeType{
+public class FileNode extends NodeType{
     private final String content;
 
     public FileNode(String name, String content){
@@ -10,26 +10,26 @@ public class FileNode extends nodeType{
         return this.content;
     }
 
-    public nodeType createAlias(){
-        return new aliasNode(this.name, this.content);
+    public NodeType createAlias(){
+        return new AliasNode(this.name, this.content);
     }
     
-    public nodeType createFile(String name, String content){
+    public NodeType createFile(String name, String content){
         return null;
         //showPopupError("Cannot create a file inside a file. \n");
     }
 
-    public nodeType createFolder(String name){
+    public NodeType createFolder(String name){
         return null;
         //showPopupError("Cannot create a folder inside a file. \n");
     }
 
-    public nodeType createArchive(String name, String extension, int compressionLevel){
+    public NodeType createArchive(String name, String extension, int compressionLevel){
         return null;
         //showPopupError("Cannot archive a file. \n");
     }
 
-    public nodeType copyNode(){
+    public NodeType copyNode(){
         return new FileNode(new String(this.name), new String(this.content));
         
     }

@@ -18,7 +18,7 @@ public class FolderNode extends NodeType{
     }
 
     public NodeType createFile(String name, String content){
-        fileNode newFile = new fileNode(name, content);
+        FileNode newFile = new FileNode(name, content);
         addNodeInFolder(newFile);
         return newFile;
     }
@@ -30,26 +30,22 @@ public class FolderNode extends NodeType{
         
     }
     public NodeType copyNode(){
-        NodeType newFolder = new FolderNode(new String(super.name + "(copy)"));
+        FolderNode newFolder = new FolderNode(new String(super.name + "(copy)"));
         Node currentNode = content;
         NodeType currentContent;
         while(currentNode != null){
             currentContent = currentNode.getContent();
             if(currentContent instanceof FolderNode){
-                newFolder = new FolderNode(getname + cpy)
-                newfolder.copyNode();
+                newFolder = new FolderNode(currentContent.getName());
+                newFolder.copyNode();
 
             } 
             if(currentContent instanceof FileNode || currentContent instanceof ArchiveNode){
-                newFolder.addNoteInFolder(currentContent.copyNode());
+                newFolder.addNodeInFolder(currentContent.copyNode());
             }
             currentNode = currentNode.getNext();
         }
-        return folderContent;
-        
-
-
-        return newFolder;
+        return (NodeType) newFolder;
 
     }
 

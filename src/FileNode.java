@@ -1,8 +1,7 @@
-
-public class fileNode extends NodeType{
+public class FileNode extends nodeType{
     private final String content;
 
-    public fileNode(String name, String content){
+    public FileNode(String name, String content){
         super();
         this.content = content;
         this.name = name;
@@ -11,27 +10,27 @@ public class fileNode extends NodeType{
         return this.content;
     }
 
-    public NodeType createAlias(){
-        return new AliasNode(this.name, this.content);
+    public nodeType createAlias(){
+        return new aliasNode(this.name, this.content);
     }
     
-    public NodeType createFile(String name, String content){
+    public nodeType createFile(String name, String content){
         return null;
         //showPopupError("Cannot create a file inside a file. \n");
     }
 
-    public NodeType createFolder(String name){
+    public nodeType createFolder(String name){
         return null;
         //showPopupError("Cannot create a folder inside a file. \n");
     }
 
-    public NodeType createArchive(String name, String extension, int compressionLevel){
+    public nodeType createArchive(String name, String extension, int compressionLevel){
         return null;
         //showPopupError("Cannot archive a file. \n");
     }
 
-    public NodeType copyNode(){
-        return new fileNode(new String(super.name + "(copy)"), new String(this.content));
+    public nodeType copyNode(){
+        return new FileNode(new String(this.name), new String(this.content));
         
     }
     public String getInfo(int nbIdentation){

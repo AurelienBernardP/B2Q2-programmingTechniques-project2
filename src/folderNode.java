@@ -1,8 +1,8 @@
 
-public class folderNode extends NodeType{
+public class FolderNode extends NodeType{
     private Node content;
 
-    public folderNode(String name){
+    public FolderNode(String name){
         super();
         this.name = name;
     }
@@ -24,17 +24,37 @@ public class folderNode extends NodeType{
     }
 
     public NodeType createFolder(String name){
-        folderNode newFolder = new folderNode(name);
+        FolderNode newFolder = new FolderNode(name);
         addNodeInFolder(newFolder);
         return newFolder;
         
     }
     public NodeType copyNode(){
+        NodeType newFolder = new FolderNode(new String(super.name + "(copy)"));
+        Node currentNode = content;
+        NodeType currentContent;
+        while(currentNode != null){
+            currentContent = currentNode.getContent();
+            if(currentContent instanceof FolderNode){
+                newFolder = new FolderNode(getname + cpy)
+                newfolder.copyNode();
+
+            } 
+            if(currentContent instanceof FileNode || currentContent instanceof ArchiveNode){
+                newFolder.addNoteInFolder(currentContent.copyNode());
+            }
+            currentNode = currentNode.getNext();
+        }
+        return folderContent;
+        
+
+
+        return newFolder;
 
     }
 
     public NodeType createArchive(String name, String extension, int compressionLevel){
-        NodeType newArchive = new archiveNode(name, extension, compressionLevel);
+        NodeType newArchive = new ArchiveNode(name, extension, compressionLevel);
         return newArchive;
     }
 
@@ -52,7 +72,7 @@ public class folderNode extends NodeType{
                 folderContent = folderContent + "  ";
             if(nbIndentation != 0)
                 folderContent = folderContent + "-";
-            if(currentContent instanceof folderNode){
+            if(currentContent instanceof FolderNode){
 
                 folderContent = folderContent + " " + currentContent.getName() + "\n";
                 folderContent = folderContent + currentContent.getInfo(nbIndentation + 1);

@@ -1,4 +1,3 @@
-
 public class FolderNode extends NodeType{
     private Node content;
 
@@ -36,8 +35,7 @@ public class FolderNode extends NodeType{
         while(currentNode != null){
             currentContent = currentNode.getContent();
             if(currentContent instanceof FolderNode){
-                newFolder = new FolderNode(currentContent.getName());
-                newFolder.copyNode();
+                newFolder.addNodeInFolder(currentContent.copyNode());
 
             } 
             if(currentContent instanceof FileNode || currentContent instanceof ArchiveNode){

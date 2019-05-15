@@ -7,7 +7,7 @@ import montefiore.ulg.ac.be.graphics.*;
 public class GuiHandler implements ExplorerEventsHandler {
 
 	private ExplorerSwingView esv;
-	private String log;
+	private String log = "";
 	
     GuiHandler(String[] args) throws NullHandlerException {
         this.esv = new ExplorerSwingView(this);

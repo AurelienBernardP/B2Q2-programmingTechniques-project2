@@ -6,6 +6,10 @@ public class FolderNode extends NodeType{
         this.name = name;
     }
 
+    public Node getContent(){
+        return this.content;
+    }
+
     public void addNodeInFolder(NodeType newNode){
         if(newNode != null){
             if(content == null){
@@ -28,6 +32,7 @@ public class FolderNode extends NodeType{
         return newFolder;
         
     }
+
     public NodeType copyNode(){
         FolderNode newFolder = new FolderNode(new String(super.name + "(copy)"));
         Node currentNode = content;
@@ -36,19 +41,20 @@ public class FolderNode extends NodeType{
             currentContent = currentNode.getContent();
             if(currentContent instanceof FolderNode){
                 newFolder.addNodeInFolder(currentContent.copyNode());
-
             } 
             if(currentContent instanceof FileNode || currentContent instanceof ArchiveNode){
                 newFolder.addNodeInFolder(currentContent.copyNode());
             }
+            if(currentContent instanceof AliasNode){
+                newFolder.addNodeInFolder(new AliasNode(currentContent.getName(), ((AliasNode)currentContent).getContent()));
+            }
             currentNode = currentNode.getNext();
         }
         return (NodeType) newFolder;
-
     }
 
     public NodeType createArchive(String name, String extension, int compressionLevel){
-        NodeType newArchive = new ArchiveNode(name, extension, compressionLevel);
+        NodeType newArchive = new ArchiveNode(name+extension, extension, compressionLevel, new String(this.getInfo(0)));
         return newArchive;
     }
 

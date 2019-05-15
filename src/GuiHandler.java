@@ -2,7 +2,6 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-
 import montefiore.ulg.ac.be.graphics.*;
 
 public class GuiHandler implements ExplorerEventsHandler {
@@ -70,14 +69,60 @@ public class GuiHandler implements ExplorerEventsHandler {
 		}
 	}
 
-	public void createCopyEvent(Object selectedNode) {
-		// TODO Auto-generated method stub
-		
+	private void createCopyFolderInJTree(Object selectedNode, int level){
+		Node currentNode = ((FolderNode)selectedNode).getContent();
+		NodeType currentContent;
+		while(currentNode != null){
+			currentContent = currentNode.getContent();
+			try{
+				esv.addNodeToLastInsertedNode(currentContent, (level));
+			}
+			catch(NoPreviousInsertedNodeException e){
+				e.printStackTrace();
+				esv.showPopupError("No previously inserted node.\n");
+			}
+			catch(LevelException l){
+				l.printStackTrace();
+				esv.showPopupError("Level exceoption error.\n");
+			}
+			if(currentContent instanceof FolderNode){
+				this.createCopyFolderInJTree(currentContent, level + 1);
+			}
+			currentNode = currentNode.getNext();
+		}
+
 	}
+
+	public void createCopyEvent(Object selectedNode){
+		if (esv.isRootNodeSelected()){
+			esv.showPopupError("Error: cannot do a copy of the root.");
+			return;
+		}
+
+		NodeType newNode = ((NodeType)selectedNode).copyNode();
+		if(newNode == null){
+			esv.showPopupError("Error: copying element.\n");
+			return;
+		}	
+		try {
+			((FolderNode)(this.esv.addNodeToParentNode(newNode))).addNodeInFolder(newNode);
+			if (selectedNode instanceof FolderNode){
+				this.createCopyFolderInJTree(selectedNode, 1);
+			}
+			esv.refreshTree();
+		} catch (NoSelectedNodeException e) {
+			e.printStackTrace();
+			esv.showPopupError("Error: copying element.\n");
+    	} catch(NoParentNodeException p){
+			p.printStackTrace();
+			esv.showPopupError("Error: the selected node has no parent.fg\n");
+		}
+	}
+
 
 	public void createFileEvent(Object selectedNode) {
 		String[] propertiesFile = this.esv.fileMenuDialog();
-		if(propertiesFile[0] == null || propertiesFile[1] == null){
+		if(propertiesFile == null && (propertiesFile[0] == null || propertiesFile[1] == null)){
 			esv.showPopupError("Error: operation 'create file' has been cancelled. \n");
 			return;
 		}
@@ -96,7 +141,6 @@ public class GuiHandler implements ExplorerEventsHandler {
 			esv.showPopupError("Error: cannot create file inside this type of element.\n");
 			return;
 		}
-		//Si détails error pas nécessaire go with an else queen
 	}
 
 	public void createFolderEvent(Object selectedNode) {

@@ -11,22 +11,19 @@ public class FileNode extends NodeType{
     }
 
     public NodeType createAlias(){
-        return new AliasNode(this.name, this.content);
+        return new AliasNode((this.name)+"(alias)", this.content);
     }
     
     public NodeType createFile(String name, String content){
         return null;
-        //showPopupError("Cannot create a file inside a file. \n");
     }
 
     public NodeType createFolder(String name){
         return null;
-        //showPopupError("Cannot create a folder inside a file. \n");
     }
 
     public NodeType createArchive(String name, String extension, int compressionLevel){
         return null;
-        //showPopupError("Cannot archive a file. \n");
     }
 
     public NodeType copyNode(){

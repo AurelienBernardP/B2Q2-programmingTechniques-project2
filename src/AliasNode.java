@@ -13,7 +13,6 @@ public class AliasNode extends NodeType{
     
     public NodeType createCopy(){
         return null;
-        //showPopupError("Cannot create a copy of an alias. \n");
     }
     public NodeType copyNode(){
         return null;
@@ -21,22 +20,18 @@ public class AliasNode extends NodeType{
     }
     public NodeType createFile(String name, String content){
         return null;
-        //showPopupError("Cannot create a file inside an alias. \n");
     }
 
     public NodeType createFolder(String name){
         return null;
-        //showPopupError("Cannot create a folder inside an alias. \n");
     }
 
     public NodeType createAlias(){
         return null;
-        //showPopupError("Cannot create an alias inside an alias. \n");
     }
 
     public NodeType createArchive(String name, String extension, int compressionLevel){
         return null;
-        //showPopupError("Cannot archive an alias. \n");
     }
 
     public String getInfo(int nbIdentation){

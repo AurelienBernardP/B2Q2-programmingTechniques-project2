@@ -17,5 +17,9 @@ abstract class NodeType{
     public abstract NodeType createAlias();
     public abstract String getInfo(int nbIdentation);
     public abstract NodeType copyNode();
+    @Override 
+    public String toString(){
+        return name;
+    }
 
 }

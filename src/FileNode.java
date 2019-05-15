@@ -27,8 +27,7 @@ public class FileNode extends NodeType{
     }
 
     public NodeType copyNode(){
-        return new FileNode(new String(this.name), new String(this.content));
-        
+        return new FileNode(new String(this.name+ "(copy)"), new String(this.content));
     }
     public String getInfo(int nbIdentation){
         return content;

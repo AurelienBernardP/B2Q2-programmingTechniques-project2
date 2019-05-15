@@ -2,6 +2,7 @@
 
 abstract class NodeType{
     protected String name;
+    
 
     public String getName(){
         return name;
@@ -10,7 +11,7 @@ abstract class NodeType{
     public void setName(String name) {
 		this.name = name;
 	}
-
+    
     public abstract NodeType createFile(String name, String content);
     public abstract NodeType createFolder(String name);
     public abstract NodeType createArchive(String name, String extension, int compressionLevel);

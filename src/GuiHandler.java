@@ -7,6 +7,7 @@ import montefiore.ulg.ac.be.graphics.*;
 public class GuiHandler implements ExplorerEventsHandler {
 
 	private ExplorerSwingView esv;
+	private String log;
 	
     GuiHandler(String[] args) throws NullHandlerException {
         this.esv = new ExplorerSwingView(this);
@@ -25,6 +26,10 @@ public class GuiHandler implements ExplorerEventsHandler {
 			try {
     	        FolderNode parent = (FolderNode)this.esv.addNodeToParentNode(newAlias);
 				parent.addNodeInFolder(newAlias);
+				Logger newLog = new DateSystem(new UserSystem(new OsSystem(new AliasEvent(new EndLog()))));
+				newLog.log();
+				System.out.println(newLog.getLog());
+				this.log = this.log + (new String(newLog.getLog()));
 				esv.refreshTree();
 			} catch (NoSelectedNodeException e) {
 				e.printStackTrace();
@@ -54,6 +59,10 @@ public class GuiHandler implements ExplorerEventsHandler {
 			try {
     	        FolderNode parent = (FolderNode)this.esv.addNodeToParentNode(newArchive);
 				parent.addNodeInFolder(newArchive);
+				Logger newLog = new DateSystem(new UserSystem(new OsSystem(new ArchiveEvent(new EndLog()))));
+				newLog.log();
+				System.out.println(newLog.getLog());
+				this.log = this.log + (new String(newLog.getLog()));
 				esv.refreshTree();
 			} catch (NoSelectedNodeException e) {
 				e.printStackTrace();
@@ -75,7 +84,7 @@ public class GuiHandler implements ExplorerEventsHandler {
 		while(currentNode != null){
 			currentContent = currentNode.getContent();
 			try{
-				esv.addNodeToLastInsertedNode(currentContent, (level));
+				esv.addNodeToLastInsertedNode(currentContent, level);
 			}
 			catch(NoPreviousInsertedNodeException e){
 				e.printStackTrace();
@@ -109,6 +118,10 @@ public class GuiHandler implements ExplorerEventsHandler {
 			if (selectedNode instanceof FolderNode){
 				this.createCopyFolderInJTree(selectedNode, 1);
 			}
+			Logger newLog = new DateSystem(new UserSystem(new OsSystem(new CopyEvent(new EndLog()))));
+			newLog.log();
+			System.out.println(newLog.getLog());
+			this.log = this.log + (new String(newLog.getLog()));
 			esv.refreshTree();
 		} catch (NoSelectedNodeException e) {
 			e.printStackTrace();
@@ -131,6 +144,10 @@ public class GuiHandler implements ExplorerEventsHandler {
 		if((newFile = ((NodeType)selectedNode).createFile(propertiesFile[0], propertiesFile[1])) != null){
 			try {
     	        this.esv.addNodeToSelectedNode(newFile);
+				Logger newLog = new DateSystem(new UserSystem(new OsSystem(new FileEvent(new EndLog()))));
+				newLog.log();
+				System.out.println(newLog.getLog());
+				this.log = this.log + (new String(newLog.getLog()));
 				esv.refreshTree();
 			} catch (NoSelectedNodeException e) {
             	e.printStackTrace();
@@ -154,6 +171,10 @@ public class GuiHandler implements ExplorerEventsHandler {
 		if((newFolder = ((NodeType)selectedNode).createFolder(nameFolder)) != null){
 			try {
     	        this.esv.addNodeToSelectedNode(newFolder);
+				Logger newLog = new DateSystem(new UserSystem(new OsSystem(new FolderEvent(new EndLog()))));
+				newLog.log();
+				System.out.println(newLog.getLog());
+				this.log = this.log + (new String(newLog.getLog()));
 				esv.refreshTree();
 			} catch (NoSelectedNodeException e) {
             	e.printStackTrace();
@@ -168,11 +189,15 @@ public class GuiHandler implements ExplorerEventsHandler {
 
 	public void doubleClickEvent(Object selectedNode) {
 		TextAreaManager jt = this.esv.getTextAreaManager();
+		Logger newLog = new DoubleClickEvent(new EndLog());
+		newLog.log();
+		System.out.println(newLog.getLog());
+		this.log = this.log + (new String(newLog.getLog()));
 		jt.clearAllText();
 		jt.appendText(((NodeType)selectedNode).getInfo(0));
 	}
 
 	public void eventExit() {
-		// TODO Auto-generated method stub
+		System.out.println(log);
 	}
 }

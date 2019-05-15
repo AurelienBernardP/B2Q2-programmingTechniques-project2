@@ -3,10 +3,6 @@ import java.util.Date;
 
 abstract class SystemInfos extends Logger{
     Logger additionalLog;
-    @Override
-    public void log(){
-        additionalLog.log();
-    }
 }
 
 class DateSystem extends SystemInfos{
@@ -14,11 +10,11 @@ class DateSystem extends SystemInfos{
         super.additionalLog = logger;
     }
     @Override
-    public void log(){
+    public String log(){
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss z");  
         Date date = new Date(System.currentTimeMillis());
-        super.addLog(formatter.format(date) + " - ");
-        super.additionalLog.log();
+       return super.addLog(formatter.format(date) + " - " +super.additionalLog.log());
+        
     }
 }
 
@@ -27,9 +23,9 @@ class OsSystem extends SystemInfos{
         super.additionalLog = logger;
     }
     @Override
-    public void log(){
-        super.addLog(System.getProperty("os.name") + " - ");
-        super.additionalLog.log();
+    public String log(){
+        return super.addLog(System.getProperty("os.name") + " - " + super.additionalLog.log());
+        
     }
 }
 
@@ -39,8 +35,8 @@ class UserSystem extends SystemInfos{
     }
 
     @Override
-    public void log(){
-        super.addLog(System.getProperty("user.name") + " - ");
-        super.additionalLog.log();
+    public String log(){
+        return super.addLog(System.getProperty("user.name") + " - " + super.additionalLog.log());
+       
     }
 }

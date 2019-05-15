@@ -146,7 +146,7 @@ public class GuiHandler implements ExplorerEventsHandler {
     	        this.esv.addNodeToSelectedNode(newFile);
 				Logger newLog = new DateSystem(new UserSystem(new OsSystem(new FileEvent(new EndLog()))));
 				newLog.log();
-				System.out.println(newLog.getLog());
+				System.out.print(newLog.getLog());
 				this.log = this.log + (new String(newLog.getLog()));
 				esv.refreshTree();
 			} catch (NoSelectedNodeException e) {
@@ -170,10 +170,10 @@ public class GuiHandler implements ExplorerEventsHandler {
 		NodeType newFolder;
 		if((newFolder = ((NodeType)selectedNode).createFolder(nameFolder)) != null){
 			try {
-    	        this.esv.addNodeToSelectedNode(newFolder);
+				this.esv.addNodeToSelectedNode(newFolder);
+				
 				Logger newLog = new DateSystem(new UserSystem(new OsSystem(new FolderEvent(new EndLog()))));
-				newLog.log();
-				System.out.println(newLog.getLog());
+				System.out.print(newLog.log());
 				this.log = this.log + (new String(newLog.getLog()));
 				esv.refreshTree();
 			} catch (NoSelectedNodeException e) {
@@ -189,15 +189,15 @@ public class GuiHandler implements ExplorerEventsHandler {
 
 	public void doubleClickEvent(Object selectedNode) {
 		TextAreaManager jt = this.esv.getTextAreaManager();
-		Logger newLog = new DoubleClickEvent(new EndLog());
-		newLog.log();
-		System.out.println(newLog.getLog());
+		Logger newLog = new DoubleClickEvent(new DoubleClickEvent(new EndLog()));
+		System.out.println(newLog.log());
 		this.log = this.log + (new String(newLog.getLog()));
 		jt.clearAllText();
 		jt.appendText(((NodeType)selectedNode).getInfo(0));
 	}
 
 	public void eventExit() {
+		System.out.println("final log:");
 		System.out.println(log);
 	}
 }

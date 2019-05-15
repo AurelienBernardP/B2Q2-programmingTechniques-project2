@@ -6,19 +6,17 @@ abstract class Logger{
     }
 
     public String addLog(String newLogs){
-        System.out.println("Before: "+logs);
        return this.logs = new String(newLogs + this.logs); 
     }
 
-    public abstract void log();
+    public abstract String log();
 }
 
 class EndLog extends Logger{
     @Override
-    public void log(){
+    public String log(){
         
 
-        super.addLog("---\n");
-        System.out.println(super.getLog());
+        return super.addLog("---\n");
     }
 } 

@@ -1,10 +1,7 @@
 abstract class Events extends Logger{
     Logger additionalLog;    
     
-    @Override
-    public void log(){
-        additionalLog.log();
-    }
+
 }
 
 class CopyEvent extends Events{
@@ -12,9 +9,9 @@ class CopyEvent extends Events{
         super.additionalLog = logger;
     }
     @Override
-    public void log(){
-        super.addLog(" eventCopy ");
-        super.additionalLog.log();
+    public String log(){
+        return super.addLog(" eventCopy " + super.additionalLog.log());
+        
     }
 }
 
@@ -23,9 +20,9 @@ class AliasEvent extends Events{
         super.additionalLog = logger;
     }
     @Override
-    public void log(){
-        super.addLog(" eventAlias ");
-        super.additionalLog.log();
+    public String log(){
+       return super.addLog(" eventAlias "+super.additionalLog.log());
+        
     }
 }
 
@@ -34,9 +31,9 @@ class ArchiveEvent extends Events{
         super.additionalLog = logger;
     }
     @Override
-    public void log(){
-        super.addLog(" eventArchive ");
-        super.additionalLog.log();
+    public String log(){
+        return super.addLog(" eventArchive "+super.additionalLog.log());
+        
     }
 }
 class FolderEvent extends Events{
@@ -44,9 +41,9 @@ class FolderEvent extends Events{
         super.additionalLog = logger;
     }
     @Override
-    public void log(){
-        super.addLog(" eventFolder ");
-        super.additionalLog.log();
+    public String log(){
+        return super.addLog(" eventFolder" + super.additionalLog.log());
+
     }
 }
 
@@ -55,9 +52,9 @@ class FileEvent extends Events{
         super.additionalLog = logger;
     }
     @Override
-    public void log(){
-        super.addLog(" eventFile ");
-        super.additionalLog.log();
+    public String log(){
+        return super.addLog(" eventFile "+super.additionalLog.log());
+        
     }
 }
 
@@ -66,10 +63,8 @@ class DoubleClickEvent extends Events{
         super.additionalLog = logger;
     }
     @Override
-    public void log(){
-        super.addLog(" eventDoubleClick " + super.additionalLog.log());
-        
-        System.out.println(super.additionalLog.getLog());
+    public String log(){
+       return super.addLog(" eventDoubleClick " + super.additionalLog.log());
         
 
     }
@@ -80,8 +75,8 @@ class ExitEvent extends Events{
         super.additionalLog = logger;
     }
     @Override
-    public void log(){
-        super.addLog(" eventExit ");
-        super.additionalLog.log();
+    public String log(){
+        return super.addLog(" eventExit " + super.additionalLog.log());
+        
     }
 }

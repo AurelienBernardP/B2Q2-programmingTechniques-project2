@@ -11,9 +11,12 @@ class DateSystem extends SystemInfos{
     }
     @Override
     public String log(){
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss z");  
+        //Set the wanted format
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");  
+
+        //Convert the given date to the wanted format
         Date date = new Date(System.currentTimeMillis());
-       return super.addLog(formatter.format(date) + " - " +super.additionalLog.log());
+        return super.addLog(formatter.format(date) + " - " +super.additionalLog.log());
         
     }
 }

@@ -20,9 +20,10 @@ public class GuiHandler implements ExplorerEventsHandler {
             e.printStackTrace();
         }
 
-		if(args == "log")
-			this.printInFile = true;
-        
+		if(args.length != 0)
+			if("log".equals(args[0]))
+				  this.printInFile = true;
+
     }
 
 	public void createAliasEvent(Object selectedNode) {
@@ -242,13 +243,14 @@ public class GuiHandler implements ExplorerEventsHandler {
 				fileWriter.flush();
 				fileWriter.close();
 			} catch (IOException e) {
-			e.printStackTrace();
+				e.printStackTrace();
+				esv.showPopupError("Error: cannot create a new file for the log.\n");
 			}
 		}
 		else{
-		//Print the complete events log in the terminal
-		System.out.println("Final logs:");
-		System.out.println(log);
+			//Print the complete events log in the terminal
+			System.out.println("Final logs:");
+			System.out.println(log);
 		}
 	}
 }

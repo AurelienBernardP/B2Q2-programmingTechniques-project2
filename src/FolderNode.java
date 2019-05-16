@@ -83,7 +83,7 @@ public class FolderNode extends NodeType{
 
             //Based on the given "nbIndentation", add indentation to the string
             for(int i = nbIndentation; i > 0; i--)
-                folderContent = folderContent + "  ";
+                folderContent = folderContent + "    ";
             if(nbIndentation != 0)
                 folderContent = folderContent + "-";
 

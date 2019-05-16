@@ -33,13 +33,10 @@ public class GuiHandler implements ExplorerEventsHandler {
 				System.out.println(newLog.getLog());
 				this.log = this.log + (new String(newLog.getLog()));
 				esv.refreshTree();
-			} catch (NoSelectedNodeException e) {
+			} catch (NoSelectedNodeException | NoParentNodeException e) {
 				e.printStackTrace();
 				esv.showPopupError("Error: creating alias.\n");
-        	} catch(NoParentNodeException p){
-				p.printStackTrace();
-				esv.showPopupError("Error: the selected node has no parent.fg\n");
-			}
+        	}
 		}
 		else{
 			//if it is not, show an error popup window
@@ -74,13 +71,10 @@ public class GuiHandler implements ExplorerEventsHandler {
 				System.out.println(newLog.getLog());
 				this.log = this.log + (new String(newLog.getLog()));
 				esv.refreshTree();
-			} catch (NoSelectedNodeException e) {
+			} catch (NoSelectedNodeException | NoParentNodeException e) {
 				e.printStackTrace();
 				esv.showPopupError("Error: creating an archive.\n");
-        	} catch(NoParentNodeException p){
-				p.printStackTrace();
-				esv.showPopupError("Error: the selected node has no parent.\n");
-			}
+        	}
 		}
 		else{
 			//if it is not, show an error popup window
@@ -97,13 +91,9 @@ public class GuiHandler implements ExplorerEventsHandler {
 			try{
 				esv.addNodeToLastInsertedNode(currentContent, level);
 			}
-			catch(NoPreviousInsertedNodeException e){
+			catch(NoPreviousInsertedNodeException | LevelException e){
 				e.printStackTrace();
-				esv.showPopupError("No previously inserted node.\n");
-			}
-			catch(LevelException l){
-				l.printStackTrace();
-				esv.showPopupError("Level exceoption error.\n");
+				esv.showPopupError("Error copying.\n");
 			}
 			if(currentContent instanceof FolderNode){
 				this.createCopyFolderInJTree(currentContent, level + 1);

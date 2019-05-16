@@ -7,9 +7,6 @@ public class AliasNode extends NodeType{
         this.name = name;
         this.content = content;
     }
-    public String getContent(){
-        return this.content;
-    }
     
     public NodeType createCopy(){
         return null;

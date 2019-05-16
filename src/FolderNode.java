@@ -53,7 +53,7 @@ public class FolderNode extends NodeType{
                 newFolder.addNodeInFolder(currentContent.copyNode());
             }
             if(currentContent instanceof AliasNode){
-                newFolder.addNodeInFolder(new AliasNode(currentContent.getName(), ((AliasNode)currentContent).getContent()));
+                newFolder.addNodeInFolder(new AliasNode(currentContent.getName(), ((AliasNode)currentContent).getInfo(0)));
             }
             currentNode = currentNode.getNext();
         }

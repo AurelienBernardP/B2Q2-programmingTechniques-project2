@@ -5,11 +5,18 @@ public class FolderNode extends NodeType{
         super();
         this.name = name;
     }
-
+    /**
+     * @return :reference to the first node to a chained list of nodes contained in the folder.
+     * 
+     */
     public Node getContent(){
         return this.content;
     }
 
+    /**
+     * @param newNode : reference to the node to be inserted in the caller folderNode.
+     * 
+     */
     public void addNodeInFolder(NodeType newNode){
         if(newNode != null){
             if(content == null){

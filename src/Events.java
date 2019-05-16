@@ -10,7 +10,7 @@ class CopyEvent extends Events{
     }
     @Override
     public String log(){
-        return super.addLog(" eventCopy " + super.additionalLog.log());
+        return " eventCopy " + super.additionalLog.log();
         
     }
 }
@@ -21,7 +21,7 @@ class AliasEvent extends Events{
     }
     @Override
     public String log(){
-       return super.addLog(" eventAlias "+super.additionalLog.log());
+       return " eventAlias "+super.additionalLog.log();
         
     }
 }
@@ -32,7 +32,7 @@ class ArchiveEvent extends Events{
     }
     @Override
     public String log(){
-        return super.addLog(" eventArchive "+super.additionalLog.log());
+        return " eventArchive "+super.additionalLog.log();
         
     }
 }
@@ -42,7 +42,7 @@ class FolderEvent extends Events{
     }
     @Override
     public String log(){
-        return super.addLog(" eventFolder" + super.additionalLog.log());
+        return " eventFolder" + super.additionalLog.log();
 
     }
 }
@@ -53,7 +53,7 @@ class FileEvent extends Events{
     }
     @Override
     public String log(){
-        return super.addLog(" eventFile "+super.additionalLog.log());
+        return " eventFile "+super.additionalLog.log();
         
     }
 }
@@ -64,7 +64,7 @@ class DoubleClickEvent extends Events{
     }
     @Override
     public String log(){
-       return super.addLog(" eventDoubleClick " + super.additionalLog.log());
+       return " eventDoubleClick " + super.additionalLog.log();
         
 
     }
@@ -76,7 +76,7 @@ class ExitEvent extends Events{
     }
     @Override
     public String log(){
-        return super.addLog(" eventExit " + super.additionalLog.log());
+        return " eventExit " + super.additionalLog.log();
         
     }
 }

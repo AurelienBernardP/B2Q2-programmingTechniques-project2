@@ -16,7 +16,7 @@ class DateSystem extends SystemInfos{
 
         //Convert the given date to the wanted format
         Date date = new Date(System.currentTimeMillis());
-        return super.addLog(formatter.format(date) + " - " +super.additionalLog.log());
+        return formatter.format(date) + " - " +super.additionalLog.log();
         
     }
 }
@@ -27,7 +27,7 @@ class OsSystem extends SystemInfos{
     }
     @Override
     public String log(){
-        return super.addLog(System.getProperty("os.name") + " - " + super.additionalLog.log());
+        return System.getProperty("os.name") + " - " + super.additionalLog.log();
         
     }
 }
@@ -39,7 +39,7 @@ class UserSystem extends SystemInfos{
 
     @Override
     public String log(){
-        return super.addLog(System.getProperty("user.name") + " - " + super.additionalLog.log());
+        return System.getProperty("user.name") + " - " + super.additionalLog.log();
        
     }
 }

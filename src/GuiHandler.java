@@ -37,7 +37,7 @@ public class GuiHandler implements ExplorerEventsHandler {
 				parent.addNodeInFolder(newAlias);
 
 				//Update the logs
-				String newLog = (new DateSystem(new UserSystem(new OsSystem(new CopyEvent(new EndLog()))))).log();
+				String newLog = (new DateSystem(new UserSystem(new OsSystem(new AliasEvent(new EndLog()))))).log();
 				this.log = this.log + (new String(newLog));
 				
 				esv.refreshTree();
@@ -76,7 +76,7 @@ public class GuiHandler implements ExplorerEventsHandler {
 				parent.addNodeInFolder(newArchive);
 
 				//Update the logs
-				String newLog = (new DateSystem(new UserSystem(new OsSystem(new CopyEvent(new EndLog()))))).log();
+				String newLog = (new DateSystem(new UserSystem(new OsSystem(new ArchiveEvent(new EndLog()))))).log();
 				this.log = this.log + (new String(newLog));
 
 				esv.refreshTree();
@@ -170,7 +170,7 @@ public class GuiHandler implements ExplorerEventsHandler {
     	        this.esv.addNodeToSelectedNode(newFile);
 
 				//Update the logs				
-				String newLog = (new DateSystem(new UserSystem(new OsSystem(new CopyEvent(new EndLog()))))).log();
+				String newLog = (new DateSystem(new UserSystem(new OsSystem(new FileEvent(new EndLog()))))).log();
 				this.log = this.log + (new String(newLog));
 
 				esv.refreshTree();
@@ -205,7 +205,7 @@ public class GuiHandler implements ExplorerEventsHandler {
 				this.esv.addNodeToSelectedNode(newFolder);
 
 				//Update the logs				
-				String newLog = (new DateSystem(new UserSystem(new OsSystem(new CopyEvent(new EndLog()))))).log();
+				String newLog = (new DateSystem(new UserSystem(new OsSystem(new FolderEvent(new EndLog()))))).log();
 				this.log = this.log + (new String(newLog));
 
 				esv.refreshTree();
@@ -228,18 +228,20 @@ public class GuiHandler implements ExplorerEventsHandler {
 		jt.appendText(((NodeType)selectedNode).getInfo(0));
 
 		//Update the logs		
-		String newLog = (new DateSystem(new UserSystem(new OsSystem(new CopyEvent(new EndLog()))))).log();
+		String newLog = (new DateSystem(new UserSystem(new OsSystem(new DoubleClickEvent(new EndLog()))))).log();
 		this.log = this.log + (new String(newLog));
 	}
 
 	public void eventExit() {
+		String newLog = (new DateSystem(new UserSystem(new OsSystem(new ExitEvent(new EndLog()))))).log();
+		this.log = this.log + (new String(newLog));
 
 		if(printInFile == true){
 			//Print the complete events log in the file "log.txt"
 			try {
 				File file = new File("log.txt");
 				FileWriter fileWriter = new FileWriter(file);
-				fileWriter.write("Final logs:\n" + log);
+				fileWriter.write(log);
 				fileWriter.flush();
 				fileWriter.close();
 			} catch (IOException e) {
@@ -249,7 +251,6 @@ public class GuiHandler implements ExplorerEventsHandler {
 		}
 		else{
 			//Print the complete events log in the terminal
-			System.out.println("Final logs:");
 			System.out.println(log);
 		}
 	}

@@ -4,6 +4,7 @@ abstract class NodeType{
     protected String name;
     
     /**
+     * Give access to the "name" variable of the instance
      * @return :name of the caller node as a string
      * 
      */
@@ -11,6 +12,7 @@ abstract class NodeType{
         return name;
     }
     /**
+     * Set the "name" variable of the instance to the given "name"
      * @param name : String containing a name given to the node
      * 
      */
